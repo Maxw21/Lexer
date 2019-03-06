@@ -1,9 +1,3 @@
-"""
-Assignment 1 - Lexical Analyzer
-CPSC 323 Spring 2019
-Maxfield Wilhoite
-"""
-
 
 class Lexer:
     """A lexical analyzer that utilizes a Finite State Machine."""
@@ -109,44 +103,43 @@ class Lexer:
         """Output the final table with lexemes and their token category."""
         output_file = open('output_file.txt', 'w+')
         print("File successfully parsed.\nLexeme Table output into output.txt file")
-        output_file.write("TOKENS\t\t\tLEXEMES\n\n")
+        # print(self.output_table)
+        output_file.write("TOKENS\t\t\tLexemes\n\n")
         for lexeme in self.output_table:
             if len(lexeme[0]) < 8:
                 output_file.write(lexeme[0] + "\t\t=\t" + lexeme[1] + "\n")
             else:
                 output_file.write(lexeme[0] + "\t=\t" + lexeme[1] + "\n")
-
+                
     def get_column_num(self, current_char):
         """Get the column in the transition table based on the passed in character."""
         if current_char.isalpha():
             return 0
         elif current_char.isdigit():
             return 1
-        elif current_char in self.column_dict:
-            return self.column_dict[current_char]
         else:
-            return 26
+            return self.column_dict[current_char]
 
     def create_transition_table(self):
         """Define the transition table used by the Finite State Machine to switch states."""
-        self.transition_table.append([1, 2, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 8, 8, 8, 11, 13, 9, 13, 13, 11])
-        self.transition_table.append([1, 1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 1, 4, 4, 4, 4, 11])
-        self.transition_table.append([11, 2, 5, 5, 5, 5, 5, 5, 5, 5, 3, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 11, 5, 5, 5, 5, 11])
-        self.transition_table.append([6, 3, 6, 6, 6, 6, 6, 6, 6, 6, 11, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 11])
-        self.transition_table.append([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-        self.transition_table.append([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-        self.transition_table.append([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-        self.transition_table.append([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-        self.transition_table.append([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-        self.transition_table.append([9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 9, 9, 9])
-        self.transition_table.append([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+        self.transition_table.append([1, 2, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 8, 8, 8, 11, 13, 9, 13, 13])
+        self.transition_table.append([1, 1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 1, 4, 4, 4, 4])
+        self.transition_table.append([11, 2, 5, 5, 5, 5, 5, 5, 5, 5, 3, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 11, 5, 5, 5, 5])
+        self.transition_table.append([6, 3, 6, 6, 6, 6, 6, 6, 6, 6, 11, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6])
+        self.transition_table.append([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+        self.transition_table.append([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+        self.transition_table.append([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+        self.transition_table.append([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+        self.transition_table.append([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+        self.transition_table.append([9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 9, 9])
+        self.transition_table.append([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
         self.transition_table.append([11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11,
-                                      11, 11, 11, 11, 11, 11, 11, 11, 11, 12, 12, 12, 12, 11])
-        self.transition_table.append([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-        self.transition_table.append([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+                                      11, 11, 11, 11, 11, 11, 11, 11, 11, 12, 12, 12, 12])
+        self.transition_table.append([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+        self.transition_table.append([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
 
     def create_column_dict(self):
-        """Creates the column dictionary for the transition table."""
+        """Creates the column dictionary for the transition tabl"""
         self.column_dict["'"] = 2
         self.column_dict["("] = 3
         self.column_dict[")"] = 4
