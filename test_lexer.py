@@ -1,3 +1,9 @@
+'''
+Assignment 1 - Lexical Analyzer
+CPSC 323 Spring 2019
+Maxfield Wilhoite
+'''
+
 from lexer import Lexer
 
 while True:
